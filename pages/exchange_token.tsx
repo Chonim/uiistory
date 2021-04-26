@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react'
+import { ReactElement, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import Config from "@src/config";
 import Cookies from "js-cookie";
@@ -15,6 +15,7 @@ const ExchangeToken = (): ReactElement => {
     const { data } = await axios.post('https://www.strava.com/oauth/token', payload)
     handleTokenReceive(data)
   }
+  
   const postToken = async () => {
     const params = new URLSearchParams(window.location.search)
     const code = params.get('code') 
@@ -33,7 +34,7 @@ const ExchangeToken = (): ReactElement => {
     console.log(data)
   }
 
-  const handleTokenReceive = (data) => {
+  const handleTokenReceive = useCallback((data) => {
     const {
       access_token,
       refresh_token,
@@ -45,7 +46,7 @@ const ExchangeToken = (): ReactElement => {
     // console.log(data)
     console.log(token_type)
     fetchAthlete()
-  }
+  }, [])
 
   useEffect(() => {
     const accessToken = Cookies.get(CookieConst.Access);
