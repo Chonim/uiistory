@@ -3,10 +3,7 @@ import Head from 'next/head'
 import Config from "@src/config";
 import { Button } from '@material-ui/core';
 
-console.log(Config)
-
 const Home = (): ReactElement => {
-
   return (
     <div className="container">
       <Head>
