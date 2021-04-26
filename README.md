@@ -1,1 +1,16 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+# uiistory
+
+## Project setup
+```
+yarn
+```
+
+### Compiles and hot-reloads for development
+```
+yarn dev
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
