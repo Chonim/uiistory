@@ -3,12 +3,15 @@ import App from "next/app";
 import { ReactElement } from "react";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import axios from "axios";
 import { CookieConst } from "@src/components/consts";
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
+  const router = useRouter();
+
   axios.interceptors.request.use((config) => {
     // config.baseURL = Config.API_ENDPOINT;
     const accessToken = Cookies.get(CookieConst.Access);
@@ -24,6 +27,20 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
 
     return config;
   });
+
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      // if (error.response.status === 401) {
+      //   Cookies.remove(CookieConst.Access);
+      //   Cookies.remove(CookieConst.Refresh);
+      //   router.replace("/");
+      // }
+    }
+  );
+
   return (
     <>
       <Head>
