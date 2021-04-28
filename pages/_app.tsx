@@ -8,6 +8,8 @@ import Cookies from "js-cookie";
 import Head from "next/head";
 import axios from "axios";
 import { CookieConst } from "@src/components/consts";
+import { Container } from "@material-ui/core"
+import AppContainer from '@src/components/common/container';
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
   const router = useRouter();
@@ -46,7 +48,10 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Component {...pageProps} />
+      <AppContainer />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
     </>
   );
 }
